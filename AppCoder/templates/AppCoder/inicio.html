@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Document</title>
+
+    <!-- Styles -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'AppCoder/css/styles.css' %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+			<p>Tivo - Landing Page<br> Documentation</p>
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                </li>
+                <li>
+                    <a href="#introduction">INTRODUCTION</a>
+                </li>
+                <li>
+                    <a href="#files">FILES STRUCTURE</a>
+				</li>
+				<li>
+                    <a href="#images">IMAGES</a>
+                </li>
+                <li>
+                    <a href="#icons">ICONS</a>
+				</li>
+				<li>
+                    <a href="#forms">CONTACT FORMS</a>
+                </li>
+				<li>
+                    <a href="#support">SUPPORT</a>
+                </li>
+            </ul>
+        </div>
+        <!-- end of sidebar wrapper -->
+
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="introduction" class="col-lg-12">
+                        <h1>INTRODUCTION</h1>
+                        
+					</div> <!-- end of introduction -->
+					
+					
+					<div class="col-lg-12"><hr></div> <!-- gray separator line -->
+					
+					
+					<div id="files" class="col-lg-12">
+                        <h1>FILES STRUCTURE</h1>
+						
+					</div> <!-- end of files structure -->
+
+
+					<div class="col-lg-12"><hr></div> <!-- gray separator line -->
+
+
+					<div id="images" class="col-lg-12">
+						<h1>IMAGES</h1>
+						<h3>Image Links</h3>
+						<p>Here are the links to the images used throughout the template:
+							<ul>
+								<li>Header app vector: <a href="https://www.freepik.com/free-vector/link-building-concept_3507157.htm#page=1&query=interface&position=19">https://www.freepik.com/free-vector/link-building-concept_3507157.htm#page=1&query=interface&position=19</a></li>
+								<li>Description icons: <a href="https://www.freepik.com/premium-vector/programming-coding-isometric-set_5059166.htm#page=1&query=software&position=13">https://www.freepik.com/premium-vector/programming-coding-isometric-set_5059166.htm#page=1&query=software&position=13</a></li>
+
+								<li>Speakers: <a href="http://www.freepik.com/free-photo/close-up-of-pretty-woman-with-glasses-and-big-smile_898740.htm">http://www.freepik.com/free-photo/close-up-of-pretty-woman-with-glasses-and-big-smile_898740.htm</a></li>
+								<li>Speakers: <a href="http://www.freepik.com/free-photo/serious-man-walking-through-the-city_940147.htm">http://www.freepik.com/free-photo/serious-man-walking-through-the-city_940147.htm</a></li>
+								<li>Article details image large: <a href="https://www.pexels.com/photo/photo-of-imac-near-macbook-1029757/">https://www.pexels.com/photo/photo-of-imac-near-macbook-1029757/</a></li>
+								
+							</ul>
+						</p>
+						
+		
+                        <h3><h1>ICONS</h1></h3>
+						
+
+
+
+
+                        <h3><h1>CONTACT FORMS</h1></h3>
+
+                        
+                        
+						<h3><h1>SUPPORT</h1></h3>
+
+						<p><b>Premium items</b>: Support is taken very seriously and is offered via email lucian@inovatik.com for 12 months from the purchase date.</p>
+						<p><b>Free items</b>: Because of limited resources at this point I am not able to provide support for free items but don't hesitate to send your questions at <a href="mailto:lucian@inovatik.com">lucian@inovatik.com</a> and I will try to help and at least point you in the right direction.</p>
+					</div> <!-- end of support -->
+										
+					<div class="col-lg-12">
+						<p class="footer">Tivo - Software Business HTML Landing Page Template by <a href="https://inovatik.com">Inovatik</a></p>
+					</div>
+                </div>
+            </div>
+        </div> <!-- end of page content wrapper -->
+    </div> <!-- end of wrapper -->
+    
+
+    <!-- Scripts Libraries -->
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+	
+	<!-- Custom Scripts -->
+    <script>
+    
+	$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+	
+	/* Smooth Scrolling To Anchors  */
+		$(function() {
+			$('a[href*="#"]:not([data-toggle="tab"])').click(function() {
+				if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+					var target = $(this.hash);
+					target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+					if (target.length) {
+						$('html, body').animate({
+							scrollTop: target.offset().top
+						}, 700);
+						return false;
+					}
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
