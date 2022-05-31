@@ -4,8 +4,13 @@
 
 {% block contenidoQueCambia %}
 
-<h1>CONTENIDO QUE CAMBIA</h1>
-
+<p>
+    <form method="post">{% csrf_token %}
+        
+        {{form.as_p}}   
+       <button type="submit">REGISTRO</button>
+    </form>
+</p>
 {% endblock %}
 
 {% block titulo %}
