@@ -16,10 +16,8 @@ from django.contrib.auth.models import User
 def inicio(request):
     return render(request, 'AppCoder/inicio.html')
 
-def registrarse(request):
-    return render(request, 'AppCoder/registrarse.html')
 
-#def login(request):
+#def perfil(request):
  #   return render(request, 'AppCoder/perfil.html')
 
 def logout(request):
@@ -45,6 +43,7 @@ def sobre(request):
 
 #---------------------------------
 
+
 def login_request(request):
     if request.method == "POST":
         form=AuthenticationForm(request=request, data=request.POST)
@@ -55,7 +54,7 @@ def login_request(request):
             user=authenticate(username=usuario, password=clave)
             if user is not None:
                 login(request, user)
-                return render(request,"AppCoder/inicio.html", {'usuario': usuario, 'mensaje': "Bienvenido al sistema"})
+                return render(request,"AppCoder/perfil.html", {'usuario': usuario, 'mensaje': "Bienvenido al sistema"})
 
             else:
                 return render(request, "AppCoder/login.html", {'mensaje': 'usuario incorrecto, vuelva a logearse'})
@@ -65,18 +64,23 @@ def login_request(request):
         form=AuthenticationForm()
         return render(request,"AppCoder/login.html", {'form': form})
 
-def registerarse(request):
+def registrarse(request):
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             username=form.cleaned_data['username']
             form.save()
-            return render(request,"AppCoder/inicio.html", {'mensaje': f"usuario {username} creado"})
+            return render(request,"AppCoder/perfil.html", {'mensaje': f"usuario {username} creado"})
         else:
             return render(request, "AppCoder/inicio.html",{'mensaje':'formulario incorrecto'})
 
     else:
         form = UserRegistrationForm()
         return render(request, "AppCoder/registrarse.html", {'form':form})
+
+class PerfilCreacion(CreateView):
+    model = Perfil
+    success_url=reverse_lazy('inicio')
+    fields=['nombre','email', 'contraseña', 'link', 'descripcion']
    
 

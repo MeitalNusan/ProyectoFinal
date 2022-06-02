@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 
-<div style="float:right"> <a class="btn" href="{% url 'sobre' %}"><h1>ABOUT ME</h1></a></div>
+<div style="float:right"> <a  style="color:black" class="btn" href="{% url 'sobre' %}">ABOUT ME</a></div>
 <html lang="">
 <head>
-    <nav class="navbar">
-        <style> 
-            nav {
-                background-color:lightblue
+    
+    <nav style="color:aliceblue"class="navbar">
+        <div class="navbar navbar-light bg-light static-top">
+           
+            <a style="color:black" class="btn" href="{% url 'inicio' %}">INICIO</a>
+            <a style="color:black" class="btn" href="{% url 'registrarse' %}">REGISTRARSE</a>
+            <a style="color:black" class="btn btn-primary" href="{% url 'login' %}">ENTRAR</a>
+
+            
+            {% if not request.user.is_authenticated %}
+
+            <a style="color:black" class="btn btn-primary" href="{% url 'login' %}">ENTRAR</a>
+
+
+            {% else %}
                 
-            }
+
+            <a style="color:black" class="btn btn-primary" href="{% url 'logout' %}">SALIR</a>
+            {% endif %}
+        
             
-        </style>
-        <div class="col -md-3 ml-auto">
-           
-            <a class="btn" href="{% url 'inicio' %}">INICIO</a>
-            <a class="btn" href="{% url 'registrarse' %}">REGISTRARSE</a>
-           
-            
-            
+                {% block contenidoquecambia %}
+                {% endblock %}
+
+                
         </div>
     </nav>
     {% load static %}
@@ -37,18 +47,11 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'AppCoder/css/styles.css' %}" rel="stylesheet" />
     </head>
-<body>
+<body style="background:url('https://astelus.com/wp-content/viajes/ometepe-una-isla-paradisiaca-en-nicaragua.jpg')no-repeat; background-size: cover;">
     <div>
-    {% if not request.user.is_authenticated %}
-
-                <a class="btn btn-primary" href="{% url 'login' %}">ENTRAR</a>
-
-
-                {% else %}
-                <p>Hola {{user}}</p>
-
-                <a class="btn btn-primary" href="{% url 'logout' %}">SALIR</a>
-                {% endif %}
+        <div style="width: 100px; height: 300px;border:1px; "></div>
+        
+   
     </div>
     <style>
         body {
@@ -86,21 +89,21 @@
             </div>
         </div>
     </footer>
-    
+     <div style="width: 1000px; height: 300px;border:1px;"></div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
    
     <script src="js/scripts.js"></script>
     
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <li class="list-inline-item me-4">
-        <a href="#!"><i class="bi-facebook fs-3"></i></a>
-    </li>
-    <li class="list-inline-item me-4">
-        <a href="#!"><i class="bi-twitter fs-3"></i></a>
-    </li>
-    <li class="list-inline-item">
-        <a href="#!"><i class="bi-instagram fs-3"></i></a>
-    </li>
+    <div class="list-inline-item me-4">
+        <a style="color:aliceblue" href="{% url 'facebook' %}"><i class="bi-facebook fs-3"></i></a>
+    </div>
+    <div class="list-inline-item me-4">
+        <a style="color:aliceblue" href="{% url 'twitter' %}"><i class="bi-twitter fs-3"></i></a>
+    </div>
+    <div class="list-inline-item">
+        <a style="color:aliceblue"href="{% url 'instagram' %}"><i class="bi-instagram fs-3"></i></a>
+    </div>
 </body>
 </html>
