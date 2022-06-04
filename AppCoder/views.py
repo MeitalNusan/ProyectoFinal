@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
 from AppCoder.forms import *
@@ -14,11 +14,11 @@ from django.contrib.auth.models import User
 
 
 def inicio(request):
-    return render(request, 'AppCoder/inicio.html')
+   return render(request, 'AppCoder/inicio.html')
 
 
-#def perfil(request):
- #   return render(request, 'AppCoder/perfil.html')
+def perfil(request):
+    return render(request, 'AppCoder/perfil.html')
 
 def logout(request):
     return render(request, 'AppCoder/logout.html')
@@ -80,7 +80,77 @@ def registrarse(request):
 
 class PerfilCreacion(CreateView):
     model = Perfil
-    success_url=reverse_lazy('inicio')
-    fields=['nombre','email', 'contraseña', 'link', 'descripcion']
-   
+    success_url=reverse_lazy('perfil_crear')
+    fields=['nombre','email', 'contraseña', 'linkDeInteres']
 
+class PerfilList(ListView):
+    model = Perfil
+    template_name=('AppCoder/perfil_list.html')
+
+class PerfilDetalle(DetailView):
+    model = Perfil
+    template_name=('AppCoder/perfil_list.html')
+
+class PerfilEdicion(UpdateView):
+    model = Perfil
+    success_url=reverse_lazy('perfil_list')
+    fields=['nombre','email', 'contraseña', 'linkDeInteres']
+
+
+class PerfilEliminacion(DeleteView):
+    model = Perfil
+    success_url=reverse_lazy('perfil_list')
+    fields=['nombre','email', 'contraseña', 'linkDeInteres']
+
+def perfil(request):
+    avatar=Avatar.objects.filter(user=request.user)
+    return render(request, 'AppAfter/perfil.html', {"url":avatar[0].avatar.url})
+    
+
+
+@login_required
+def nuevoPerfil(request):
+    user=User.objects.get(username=request.user)
+    if request.method == 'POST':
+        formulario=AuthenticationForm(request=request, data=request.POST)
+        formulario=AvatarForm(request.POST, request.FILES)
+        if formulario.is_valid():
+
+            avatarViejo=Posteo.objects.get(user=request.user)
+            if(avatarViejo.avatar):
+                avatarViejo.delete()
+            avatar=Posteo(user=user, avatar=formulario.cleaned_data['avatar'])
+            avatar.save()
+            return render(request, 'AppCoder/inicio.html', {'usuario':user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE'})
+    else:
+        formulario=AvatarForm()
+    return render(request, 'AppCoder/nuevoPerfil.html', {'formulario':formulario, 'usuario':user})
+
+
+class PosteoCreacion(CreateView):
+    model = Posteo
+    success_url=reverse_lazy('perfil')
+    fields=['nombre','titulo', 'fecha', 'descripcion']
+
+
+@login_required
+def agregarAvatar(request):
+    if request.user.is_authenticated:
+        user=User.objects.get(username=request.user)
+        if request.method == 'POST':
+            formulario=AuthenticationForm(request=request, data=request.POST)
+        formulario=AvatarForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            avatarViejo=Avatar.objects.get(user=request.user)
+            if(avatarViejo.avatar):
+                avatarViejo.delete()
+            avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
+            avatar.save()
+            return render(request, 'AppCoder/inicio.html', {'usuario':user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE'})
+        else:
+            formulario=AvatarForm()
+        return render(request, 'AppCoder/agregarAvatar.html', {'formulario2':formulario, 'usuario':user})
+
+    
+def sobre2(request):
+    return render(request, "AppCoder/sobre2.html")

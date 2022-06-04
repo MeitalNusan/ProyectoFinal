@@ -7,25 +7,29 @@ class Posteo(models.Model):
     titulo=models.CharField(max_length=150)
     subtitulo=models.CharField(max_length=150)
     fecha=models.DateField()
-    avatar=ImageField()
+    descripcion=models.TextField(max_length=150)
 
     def __str__(self):
-     return self.nombre + " " + self.titulo + " " + self.subtitulo 
+     return self.nombre + " " + self.titulo + " " + self.subtitulo + self.descripcion
 
 class Perfil(models.Model):
     nombre=models.CharField(max_length=150)
     email=models.EmailField(max_length=150)
     contraseña=models.IntegerField()
-    link=models.SlugField(max_length=150)
-    descripcion=models.CharField(max_length=150)
+    linkDeInteres=models.URLField(max_length=150)
+    
     
 
     def __str__(self):
-     return self.nombre + " " + self.email + " " + self.descripcion
+     return self.nombre + " " + self.email + self.linkDeInteres
 
 class Blog(models.Model):
     nombre=models.CharField(max_length=50)
-    url=models.SlugField(max_length=150)
+    url=models.URLField(max_length=150)
 
     def __str__(self):
         return self.nombre + " " + self.url
+
+class Avatar(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    avatar= models.ImageField(upload_to='avatar', blank=True, null=True)

@@ -1,0 +1,37 @@
+{% extends "AppCoder/padre.html" %} 
+
+{% load static %}
+
+{% block contenidoQueCambia %} 
+
+{% for perfil in object_list %} 
+
+<p>NOMBRE: <i>{{perfil.nombre}}</i></p>
+<p>APELLIDO: <i>{{perfil.apellido}}</i></p>
+<p>EMAIL: <i>{{perfil.email}}</i></p>
+
+<p>
+
+    <a href="{% url 'perfil_listar' %}">REGRESAR</a>
+
+</p>
+
+{% endfor %}
+
+
+
+
+    
+
+
+{% endblock %}
+
+{% block titulo %} 
+
+    <h1>PERFILES!</h1>
+    
+    <button>
+        <a href="{% url 'logout' %}">SALIR</a>
+    </button>
+
+{% endblock %} 

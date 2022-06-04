@@ -13,7 +13,23 @@
     
 </li>
 
+<p>
 
+    <a style="color:palegoldenrod" href="{% url 'perfil_listar' %}">DETALLE DE PERFILES</a>
+</p>
+
+
+<p>
+    {% if request.user.is_authenticated %}
+    <a style="color:palegoldenrod" href="{% url 'posteo_nuevo' %}">CREAR PERFIL</a>
+    {% else %}
+    <a style="color:palegoldenrod" href="{% url 'registrarse' %}">REGISTRARSE</a>
+    
+    {% endif %}
+    
+    
+
+</p>
 
 
 {% endblock %}
