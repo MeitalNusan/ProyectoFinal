@@ -25,7 +25,7 @@ urlpatterns = [
     path('posteo/nuevo/', PosteoCreacion.as_view(), name='posteo_nuevo'),
 
 
-    path('nuevoPerfil/', nuevoPerfil, name='nuevoPerfil'),
+    path('posteoNuevo/', posteoNuevo, name='posteoNuevo'),
     path('agregarAvatar/', agregarAvatar, name= "agregarAvatar"),
     path('sobre2/', sobre2, name= "sobre2"),
    
