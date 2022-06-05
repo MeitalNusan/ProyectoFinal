@@ -1,4 +1,4 @@
-{% extends "AppCoder/padre.html" %}
+{% extends "AppMensaje/padre.html" %}
 
 {% load static %}
 
@@ -6,6 +6,7 @@
 {% if request.user.is_authenticated %}
 
 <a class="btn btn-primary" href="{% url 'perfil' %}"></a>
+<a class="btn btn-primary" href="{% url 'mensaje' %}"></a>
 
 
 {% else %}

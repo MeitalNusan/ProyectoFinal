@@ -33,3 +33,9 @@ class Blog(models.Model):
 class Avatar(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     avatar= models.ImageField(upload_to='avatar', blank=True, null=True)
+
+class Mensajes(models.Model):
+    emisor:models.CharField(max_length=50)
+    receptor:models.CharField(max_length=50)
+    
+

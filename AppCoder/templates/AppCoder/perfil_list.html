@@ -14,6 +14,7 @@
 <p>
 
     <a href="{% url 'perfil_listar' %}">REGRESAR</a>
+    
 
 </p>
 
@@ -27,12 +28,15 @@
 
 {% endblock %}
 
-{% block titulo %} 
+{% block contenidoquecambio %} 
 
-    <h1>PERFILES!</h1>
+    <h1 style="color: black">Esta es una lista de los usuarios que se encuentran interactuando en nuestra red: </h1>
+
+    <p>
+
+        <a style="color:palegoldenrod" href="{% url 'perfil_listar' %}">DETALLE DE PERFILES</a>
+    </p>
     
-    <button>
-        <a href="{% url 'logout' %}">SALIR</a>
-    </button>
+    
 
 {% endblock %} 

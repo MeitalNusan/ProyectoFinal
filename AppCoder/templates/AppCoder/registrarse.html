@@ -1,20 +1,17 @@
 {% extends "AppCoder/padre.html" %}
 
 {% load static %}
-{% block contenidoquecambia %}
-<p>
 
-    <form style="color:black" method="POST">{% csrf_token %}
+{% block contenidoquecambio %}
+
+<form method="POST">{% csrf_token %}
         
-        {{form.as_p}}   
-       <button type="submit">REGISTRO</button>
-    </form>
-</p>
-{% endblock %}
-
-{% block contenidoQueCambia %}
+     {{form.as_p}}   
+    <button type="submit">REGISTRO</button>
+</form>
 
 {% endblock %}
+
 
 {% block titulo %}
 

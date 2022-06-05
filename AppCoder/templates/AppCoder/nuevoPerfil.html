@@ -18,6 +18,7 @@
 <p>
     <form style="color: white;" method="post">{% csrf_token %}
         <a style="color: palegoldenrod;" href="{% url 'agregarAvatar' %}">AGREGAR IMAGEN</a>
+        <a style="color: palegoldenrod;" href="{% url 'editarPerfil' %}">EDITAR PERFIL</a>
         {{form.as_p}} 
       
         <input type="submit" value="ENVIAR">

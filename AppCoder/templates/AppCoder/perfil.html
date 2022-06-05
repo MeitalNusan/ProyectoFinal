@@ -2,16 +2,22 @@
 
 {% load static %}
 
+{% block contenidoquecambio %}
+
+<a href="{% url 'logout' %}">SALIR</a>
+    
+{% endblock %}
+
 {% block contenidoQueCambia %}
 
-
+<a style="color:palegoldenrod" href="{% url 'posteoNuevo' %}">HACER UN POST</a>
 
 {% endblock %}
 
 {% block titulo %}
 
-<form action="{% url 'posteo_crear' %}">CREAR PERFIL
+<h1>Hola, {{usuario}} </h1>
 
-    {{formulario}}
-</form>
+    {{mensaje}}
+
 {% endblock %}
