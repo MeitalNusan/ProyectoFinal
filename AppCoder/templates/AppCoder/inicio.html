@@ -2,17 +2,6 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
-{% if request.user.is_authenticated %}
-
-<a class="btn btn-primary" href="{% url 'perfil' %}"></a>
-
-
-{% else %}
-
-<a class="btn btn-primary" href="{% url 'login' %}">ENTRAR</a>
-{% endif %}
-{% endblock %}
     
 {% block contenidoQueCambia %}
 
