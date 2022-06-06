@@ -2,17 +2,30 @@
 
 {% load static %}
 
-    
-{% block contenidoQueCambia %}
-
-<center><img src="https://www.lucushost.com/blog/wp-content/uploads/2018/02/ejemplo-imagen-visualhunt.jpg" alt=""></center>
-
-{% endblock %}
-
-
 {% block contenidoquecambio %}
 
 <center><H1 style="color: black"> NUEVO MUNDO </H1> <p><H3 style="color: black">Que estas esperando para empezar a escribir
 tu propia historia?</H3></center></p>
 
+{% endblock %}
+    
+{% block contenidoQueCambia %}
+
+{% if request.user.is_authenticated %}
+
+
+<a style="color: aliceblue;" href="{% url 'posteo_crear' %}">Agregar Post</a>
+
+    BIENVENIDO
+
+{% endif %}
+
+<center><img src="https://www.lucushost.com/blog/wp-content/uploads/2018/02/ejemplo-imagen-visualhunt.jpg" alt=""></center>
+
+
+{% endblock %}
+
+
+{% block titulo %}
+ 
 {% endblock %}

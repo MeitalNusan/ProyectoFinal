@@ -2,32 +2,6 @@
 
 {% load static %}
 
-{% block contenidoQueCambia %} 
-
-{% for perfil in object_list %} 
-
-<p>NOMBRE: <i>{{perfil.nombre}}</i></p>
-<p>EMAIL: <i>{{perfil.email}}</i></p>
-<p>LINK DE INTERES: <i>{{perfil.lindDeInteres}}</i></p>
-
-
-<p>
-
-    <a href="{% url 'perfil_listar' %}">REGRESAR</a>
-    
-
-</p>
-
-{% endfor %}
-
-
-
-
-    
-
-
-{% endblock %}
-
 {% block contenidoquecambio %} 
 
     <h1 style="color: black">Esta es una lista de los usuarios que se encuentran interactuando en nuestra red: </h1>
@@ -38,5 +12,28 @@
     </p>
     
     
+
+{% endblock %} 
+
+{% block contenidoQueCambia %}
+
+
+{% for perfil in object_list %} 
+
+<p>NOMBRE: <i>{{perfil.nombre}}</i></p>
+<p>EMAIL: <i>{{perfil.email}}</i></p>
+<p>LINK DE INTERES: <i>{{perfil.lindDeInteres}}</i></p>
+<a style="color: aliceblue;" href="{% url 'perfil' %}">Ir al Perfil</a>
+
+
+
+{% endfor %}
+
+
+{% endblock %}
+
+{% block titulo %} 
+
+
 
 {% endblock %} 

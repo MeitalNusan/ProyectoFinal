@@ -4,12 +4,14 @@
 
 {% block contenidoQueCambia %} 
 
+<form action=""></form>
 
 <p>
-    <form style="color: white;" method="post">{% csrf_token %}
+    <form style="color: white;"action="{% url 'posteo_crear' %}" method="post">{% csrf_token %}
         <a style="color: palegoldenrod;" href="{% url 'agregarAvatar' %}">AGREGAR IMAGEN</a>
         {{form.as_p}} 
-      
+        
+        
         <input type="submit" value="ENVIAR">
 
     </form>
@@ -18,5 +20,5 @@
 
 {% block titulo %} 
 
-<a style="color:palegoldenrod" href="{% url 'posteo_nuevo' %}">subir post</a>
+
 {% endblock %} 

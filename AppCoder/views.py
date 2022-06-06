@@ -13,13 +13,13 @@ from django.contrib.auth.models import User
 
 
 def inicio(request):
-    url="HOLA!"
-    return render(request, "AppCoder/inicio.html", {"url":url})
+    return render(request, 'AppCoder/inicio.html',)
   
 
 
 def perfil(request):
-    return render(request, 'AppCoder/perfil.html')
+    avatar=Avatar.objects.filter(user=request.user)
+    return render(request, 'AppCoder/perfil.html', {"url":avatar[0].avatar.url})
 
 
 def facebook(request):
@@ -44,34 +44,34 @@ def sobre2(request):
 #---------------------------------
 
 class PerfilCreacion(LoginRequiredMixin,CreateView):
-    model = Perfil
-    success_url=reverse_lazy('posteo/nuevo')
+    model = Perfiles
+    success_url=reverse_lazy('perfil_listar')
     fields=['nombre','email', 'contraseña', 'linkDeInteres']
 
 class PerfilList(LoginRequiredMixin,ListView):
-    model = Perfil
+    model = Perfiles
     template_name=('AppCoder/perfil_list.html')
 
 class PerfilDetalle(LoginRequiredMixin,DetailView):
-    model = Perfil
+    model = Perfiles
     template_name=('AppCoder/perfil_detalle.html')
 
 class PerfilEdicion(LoginRequiredMixin,UpdateView):
-    model = Perfil
-    success_url=reverse_lazy('perfil_list')
+    model = Perfiles
+    success_url=reverse_lazy('perfil_listar')
     fields=['nombre','email', 'contraseña', 'linkDeInteres']
 
 
 class PerfilEliminacion(LoginRequiredMixin,DeleteView):
-    model = Perfil
-    success_url=reverse_lazy('perfil_list')
+    model = Perfiles
+    success_url=reverse_lazy('perfil_listar')
     fields=['nombre','email', 'contraseña', 'linkDeInteres']
 
 
 class PosteoCreacion(LoginRequiredMixin, CreateView):
-    model = Posteo
-    success_url=reverse_lazy('perfil')
-    fields=['nombre','titulo', 'fecha', 'descripcion']
+    model = Posteos
+    success_url=reverse_lazy('perfil_listar')
+    fields=['nombre','titulo', 'fecha', 'descripcion','avatar']
 #-------------------------------------------------------------------
 
 def login_request(request):
@@ -84,29 +84,29 @@ def login_request(request):
             user=authenticate(username=usuario, password=clave)
             if user is not None:
                 login(request, user)
-                return render(request,"AppCoder/posteoNuevo.html", {'usuario': usuario, 'mensaje': "Bienvenido a Nuevo Mundo"})
+                return render(request,"AppCoder/inicio.html", {'usuario': usuario, 'mensaje': "Bienvenido a Nuevo Mundo"})
 
             else:
                 return render(request, "AppCoder/inicio.html", {'mensaje': 'usuario incorrecto, intente ingresar nuevamente'})
         else:
-            return render(request, "AppCoder/login.html",{'mensaje': 'Error, formulario invalido, vuelva a loguearse'})
+                return render(request, "AppCoder/login.html",{'mensaje': 'Error, formulario invalido, vuelva a loguearse'})
     else:
         form=AuthenticationForm()
-        return render(request,"AppCoder/login.html", {'formulario': form})
+    return render(request,"AppCoder/login.html", {'formulario': form})
 
-def registrarse(request):
+def register(request):
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             username=form.cleaned_data['username']
             form.save()
-            return render(request,"AppCoder/posteoNuevo.html", {'mensaje': f"usuario {username} creado"})
+            return render(request,"AppCoder/inicio.html", {'mensaje': f"usuario {username} creado"})
         else:
-            return render(request, "AppCoder/inicio.html",{'mensaje':'formulario incorrecto'})
+            return render(request, "AppCoder/inicio.html",{'mensaje':'formulario incorrecto, vuelva a intentarlo'})
 
     else:
         form = UserRegistrationForm()
-        return render(request, "AppCoder/registrarse.html", {'form':form})
+    return render(request, "AppCoder/register.html", {'form':form})
     
 
 #----------------------------------------------------------------------------
@@ -146,15 +146,13 @@ def editarPerfil(request):
     return render(request,"ApCoder/editarPerfil.html",{'formulario':formulario, 'usuario':usuario.username})
 
 #--------------------------------------------------------------
-def perfilNuevo(request):
-    return render(request, "AppCoder/posteoNuevo")    
 
-def posteoNuevo(request):
-    return render(request, "AppCoder/posteoNuevo.html")
+#def posteoNuevo(request):
+ #   return render(request, "AppCoder/posteo.html")
 
 
 class MensajeCreacion(LoginRequiredMixin,CreateView):
     model = Mensajes
-    success_url=reverse_lazy('posteo/nuevo')
+    success_url=reverse_lazy('mensaje')
     fields=['emisor', 'receptor']
     

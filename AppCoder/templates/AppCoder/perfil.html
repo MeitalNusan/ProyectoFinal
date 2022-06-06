@@ -1,23 +1,15 @@
-{% extends "AppCoder/padre.html" %}
+{% extends "AppCoder/padre.html" %} 
 
 {% load static %}
 
-{% block contenidoquecambio %}
+{% block contenidoQueCambia %} 
 
-<a href="{% url 'logout' %}">SALIR</a>
-    
-{% endblock %}
-
-{% block contenidoQueCambia %}
-
-<a style="color:palegoldenrod" href="{% url 'posteoNuevo' %}">HACER UN POST</a>
+<h1 > {{mensaje}} </h1>
+<img src="{{url}}" alt=""/>
 
 {% endblock %}
 
-{% block titulo %}
+{% block titulo %} 
 
-<h1>Hola, {{usuario}} </h1>
 
-    {{mensaje}}
-
-{% endblock %}
+{% endblock %} 
