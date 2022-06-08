@@ -18,8 +18,8 @@ def inicio(request):
 
 
 def perfil(request):
-    avatar=Avatar.objects.filter(user=request.user)
-    return render(request, 'AppCoder/perfil.html', {"url":avatar[0].avatar.url})
+    imagen=Posteos.objects.all()
+    return render(request, 'AppCoder/inicio.html', {'formulario':imagen})
 
 
 def facebook(request):
@@ -70,10 +70,11 @@ class PerfilEliminacion(LoginRequiredMixin,DeleteView):
 
 class PosteoCreacion(LoginRequiredMixin, CreateView):
     model = Posteos
-    success_url=reverse_lazy('perfil_listar')
-    fields=['nombre','titulo', 'fecha', 'descripcion','avatar']
-#-------------------------------------------------------------------
+    success_url=reverse_lazy('perfil')
+    fields=['user','nombre','titulo', 'fecha', 'descripcion','imagen']
 
+
+#-------------------------------------------------------------------
 def login_request(request):
     if request.method == "POST":
         form=AuthenticationForm(request=request, data=request.POST)
@@ -93,6 +94,8 @@ def login_request(request):
     else:
         form=AuthenticationForm()
     return render(request,"AppCoder/login.html", {'formulario': form})
+           
+           
 
 def register(request):
     if request.method == "POST":
@@ -102,8 +105,8 @@ def register(request):
             form.save()
             return render(request,"AppCoder/inicio.html", {'mensaje': f"usuario {username} creado"})
         else:
-            return render(request, "AppCoder/inicio.html",{'mensaje':'formulario incorrecto, vuelva a intentarlo'})
-
+        
+            return render(request, "AppCoder/register.html", {'form':form})
     else:
         form = UserRegistrationForm()
     return render(request, "AppCoder/register.html", {'form':form})
@@ -117,9 +120,9 @@ def agregarAvatar(request):
         formulario=AuthenticationForm(request=request, data=request.POST)
         formulario=AvatarForm(request.POST, request.FILES)
         if formulario.is_valid():
-            avatarViejo=Avatar.objects.get(user=request.user)
-            if(avatarViejo.avatar):
-                avatarViejo.delete()
+            avatarViejo=Avatar.objects.filter(user=request.user)
+            if(len(avatarViejo)!=0):
+                avatarViejo[0].delete()
             avatar=Avatar(user=user, avatar=formulario.cleaned_data['avatar'])
             avatar.save()
             return render(request, 'AppCoder/perfil.html', {'usuario':user, 'mensaje':'AVATAR AGREGADO EXITOSAMENTE'})
@@ -143,16 +146,7 @@ def editarPerfil(request):
 
     else:
         formulario=UserEditForm(instance=usuario)
-    return render(request,"ApCoder/editarPerfil.html",{'formulario':formulario, 'usuario':usuario.username})
+    return render(request,"AppCoder/editarPerfil.html",{'formulario':formulario, 'usuario':usuario.username})
 
 #--------------------------------------------------------------
 
-#def posteoNuevo(request):
- #   return render(request, "AppCoder/posteo.html")
-
-
-class MensajeCreacion(LoginRequiredMixin,CreateView):
-    model = Mensajes
-    success_url=reverse_lazy('mensaje')
-    fields=['emisor', 'receptor']
-    

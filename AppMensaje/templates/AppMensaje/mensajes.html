@@ -10,17 +10,10 @@
 {% block titulo %}
 
 
- <div class="container">
-        
+ <form action="{% url 'mensaje' %}">Mensajes
 
-
-    <p><b style="color: black"><strong> <h2>{{mensaje}}</h2>
-    </p>
-
-
-    </b></strong>
-
-</div>
+    {{form.as_p}}
+ </form>
 
 
 

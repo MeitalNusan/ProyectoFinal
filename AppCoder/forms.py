@@ -1,6 +1,7 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import *
 
 
 
@@ -31,3 +32,6 @@ class AvatarForm(forms.Form):
     avatar=forms.ImageField(label="avatar")
 
 
+class ImagenForm(forms.Form):
+    imagen=forms.ImageField(label="imagenes")
+    

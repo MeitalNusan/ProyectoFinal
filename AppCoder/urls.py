@@ -24,13 +24,15 @@ urlpatterns = [
     path('registrarse/', register, name="registrarse"),
     path('logout/', LogoutView.as_view(template_name="AppCoder/logout.html"), name= "logout"),
     path('editarPerfil/', editarPerfil, name= "editarPerfil"),
+   
 
 
    
     path('agregarAvatar/', agregarAvatar, name= "agregarAvatar"),
+    #path('agregarImagen/', agregarImagen, name= "agregarImagen"),
     path('sobre2/', sobre2, name= "sobre2"),
     #path('chat/', chat, name= "chat"),
-    path('mensaje/nuevo/', MensajeCreacion.as_view(), name='mensaje'),
+    
    
     
 

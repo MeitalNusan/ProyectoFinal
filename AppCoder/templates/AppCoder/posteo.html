@@ -8,7 +8,7 @@
 
 <p>
     <form style="color: white;"action="{% url 'posteo_crear' %}" method="post">{% csrf_token %}
-        <a style="color: palegoldenrod;" href="{% url 'agregarAvatar' %}">AGREGAR IMAGEN</a>
+        
         {{form.as_p}} 
         
         

@@ -5,11 +5,13 @@
 {% block contenidoQueCambia %} 
 
 <h1 > {{mensaje}} </h1>
-<img src="{{url}}" alt=""/>
+
+<img src="{{formularioImagen}}" alt=""/>
+
 
 {% endblock %}
 
 {% block titulo %} 
-
+<a style="color:aliceblue" href="{% url 'crear_posteo' %}">crear post</a>
 
 {% endblock %} 
