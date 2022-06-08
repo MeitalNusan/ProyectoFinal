@@ -29,9 +29,9 @@ urlpatterns = [
 
    
     path('agregarAvatar/', agregarAvatar, name= "agregarAvatar"),
-    #path('agregarImagen/', agregarImagen, name= "agregarImagen"),
+    
     path('sobre2/', sobre2, name= "sobre2"),
-    #path('chat/', chat, name= "chat"),
+    
     
    
     
